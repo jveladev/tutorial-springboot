@@ -1,0 +1,28 @@
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  
+spring:
+  datasource:
+    #url: jdbc:h2:mem:mydb
+    url: jdbc:h2:file:/home/jvela/Proyectos/CursoSpringBoot-AytoZaragoza/tutorial-springboot/src/main/resources/miBd
+    username: user
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console.enabled: true #http://localhost:8080/h2-console/
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+
+aplicacion:
+  nombre: Tutorial Spring Boot - Ayuntamiento de Zaragoza
