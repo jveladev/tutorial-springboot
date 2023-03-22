@@ -6,8 +6,10 @@ server:
   
 spring:
   datasource:
-    #url: jdbc:h2:mem:mydb
-    url: jdbc:h2:file:/home/jvela/Proyectos/CursoSpringBoot-AytoZaragoza/tutorial-springboot/src/main/resources/miBd
+    # Bd en memoria
+    url: jdbc:h2:mem:mydbTmp
+    # Bd persistente, se debe establecer tu path absoluto a este fichero
+    #url: jdbc:h2:file:/home/jvela/Proyectos/CursoSpringBoot-AytoZaragoza/tutorial-springboot/src/main/resources/miBd
     username: user
     password: password
     driverClassName: org.h2.Driver
