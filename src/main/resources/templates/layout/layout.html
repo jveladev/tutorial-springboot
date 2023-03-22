@@ -44,6 +44,9 @@
 	</div>
 	
 	<footer th:fragment="footer" class="bg-dark">
+		<h2 sec:authorize="hasRole('ADMIN')">
+			<span class="blink_text"> <b>Eres ADMIN !!! </b></span><br>
+		</h2>
 		<span class="info-copyrigth"><a href="https://www.zaragoza.es/sede/">Sede Electrónica Ayuntamiento de Zaragoza</a> &copy; 2023</span>
 	</footer>
 </body>
