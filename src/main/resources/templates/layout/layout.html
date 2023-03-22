@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
 	<meta charset="UTF-8"/>
 	<title th:text="${titulo}"></title>
@@ -27,10 +27,14 @@
 		        <a class="nav-link" th:href="@{/productos/lista}">Productos</a>
 		      </li>
 		    </ul>
-			<form th:object="${textoBusqueda}" th:action="@{/productos/lista}" method="get" class="form-inline my-2 my-lg-0">
+			<form sec:authorize="isAuthenticated()" th:object="${textoBusqueda}" th:action="@{/productos/lista}" method="get" class="form-inline my-2 my-lg-0">
 		      <input name="textoBusqueda" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre..." aria-label="Search">
 		      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
 		    </form>
+			  &nbsp;&nbsp;
+			<form sec:authorize="isAuthenticated()" name="logout" th:action="@{/logout}" method="post" class="form-inline my-2 my-lg-0">
+				<button class="btn btn-outline-danger" type="submit">Logout <span sec:authentication="principal.Username"></span></button>
+			</form>
 		  </div>
 		</nav>
 	</header>
