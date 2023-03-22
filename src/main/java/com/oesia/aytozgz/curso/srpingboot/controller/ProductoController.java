@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.oesia.aytozgz.curso.srpingboot.model.entity.Producto;
 import com.oesia.aytozgz.curso.srpingboot.model.jpa.service.ProductoService;
@@ -18,7 +16,7 @@ import com.oesia.aytozgz.curso.srpingboot.model.jpa.service.ProductoService;
 public class ProductoController {
 	
 	public static final String VISTA_LISTA = "lista";
-	public static final String VISTA_FORMULARIO = "formulario";
+	public static final String VISTA_ALTA_PRODUCTO = "altaProducto";
 	
 	@Value("${aplicacion.nombre}")
 	private String nombreAplicacion;
@@ -37,32 +35,14 @@ public class ProductoController {
 
 		return VISTA_LISTA;
 	}
-	
-	@GetMapping(value = "/listaModelMap")
-	public String listarModelMap(ModelMap model) {
-		model.addAttribute("titulo", nombreAplicacion);
-		model.addAttribute("productos", productoService.obtenerTodosProductos());
 
-		return VISTA_LISTA;
-	}
-	
-	@GetMapping("/listaModelAndView")
-	public ModelAndView listarModelAndView() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("titulo", nombreAplicacion);
-		mav.addObject("productos", productoService.obtenerTodosProductos());
-		mav.setViewName(VISTA_LISTA);
-
-		return mav;
-	}
-	
 	@GetMapping("/crear")
 	public String crear(Map<String, Object> model) {
 		Producto producto = new Producto();
 		model.put("producto", producto);
 		model.put("titulo", nombreAplicacion);
 		
-		return VISTA_FORMULARIO;
+		return VISTA_ALTA_PRODUCTO;
 	}
 	
 	@PostMapping("/guardar")
@@ -75,7 +55,6 @@ public class ProductoController {
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer idProducto) {
 		productoService.eliminar(idProducto);
-
 		return "redirect:../" + VISTA_LISTA;
 	}
 
